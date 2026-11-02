@@ -1,0 +1,16 @@
+{% load static %}
+<div class="col-6 col-md-4 my-1">
+    <div class="card">
+      <img 
+        class="img-fluid card-img-top" 
+        height="400" width="300"
+        src="{% static 'img/image-holder.png' %}"
+      >
+        <form method="post">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                {% bootstrap_button button_type="submit" content="Отправить" %}
+            </form>
+      </div>
+    </div>
+  </div>
