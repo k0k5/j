@@ -1,0 +1,15 @@
+# Пример совмещения разных методов запросов в CBV
+class MyView(View):
+
+    def get(self, request):
+        # Обработка GET: отображаем форму
+        form = MyForm()
+        return render(request, 'my_template.html', {'form': form})
+    
+    def post(self, request):
+        # Обработка POST: валидируем и сохраняем данные
+        form = MyForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('success_url')  # Перенаправление после успешного сохранения
+        return render(request, 'my_template.html', {'form': form})
