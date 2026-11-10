@@ -2,7 +2,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-  {% for birthday in birthdays %}
+  {% for birthday in object_list %}
     <div> <!-- Обернём каждую запись в тег div -->
       <div> <!-- Текст обернём в отдельный вложенный div -->
         {{ birthday.first_name }} {{ birthday.last_name }} - {{ birthday.birthday }}
@@ -10,11 +10,13 @@
       <div>
         <a href="{% url 'birthday:edit' birthday.id %}">Изменить запись</a>
         <a href="{% url 'birthday:delete' birthday.id %}">Удалить запись</a>
+        <a href="{% url 'birthday:detail' birthday.id %}">Сколько до дня рождения?</a>
       </div>
       {% if not forloop.last %}
         <hr>
       {% endif %}
     </div>
+    
   {% empty %}
     <p>Пока нет ни одной записи.</p>
   {% endfor %}
